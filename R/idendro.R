@@ -151,8 +151,7 @@ idendro<-structure(function# Interactive Dendrogram
     vscale=1.5, ##<< vertical scaling factor of the dendrogram
     ## figure. See 'hscale'.
 
-    silent=FALSE, ##<< if TRUE, no informative message boxes will be
-    ## drawn.
+    silent=FALSE, ##<< if TRUE, no informative messages will be shown
 
     zoomFactor=1/240, ##<<the amount of zoom in/out as controlled by the
     ## mouse wheel
@@ -303,8 +302,22 @@ idendro<-structure(function# Interactive Dendrogram
         if (!requireNamespace("rggobi",quietly=TRUE)) {
             stop('The \'rggobi\' package is not installed, can\'t integrate with GGobi.')
         }
-        warning('Integrating with GGobi, ignoring the \'clusterColors\' argument: using colors from the \'',
-            ggobiColorScheme,'\' GGobi color scheme specified using the \'ggobiColorScheme\' argument.')
+        # We need to attach "rggobi", otherwise thw following error gets thrown from ggobi:
+        #  Error in .RGtkCall("R_setGObjectProps", obj, value, PACKAGE = "RGtk2") :
+        #    Invalid property 1!
+        # However, in order to keep the search path intact after the call to idendro(),
+        # we attempt to unload "rggobi" later (see below).
+        if (!"package:rggobi"%in%search()) {
+          attachNamespace("rggobi")
+          ggobiAttached<-TRUE
+        } else {
+          ggobiAttached<-FALSE
+        }
+
+        if (!silent) {
+            message('Note: integrating with GGobi, ignoring the \'clusterColors\' argument: using colors from the \'',
+                ggobiColorScheme,'\' GGobi color scheme specified using the \'ggobiColorScheme\' argument.')
+        }
         g<-rggobi::ggobi(x)
         # set color scheme
         rggobi::colorscheme(g)<-ggobiColorScheme
@@ -353,6 +366,11 @@ idendro<-structure(function# Interactive Dendrogram
         # and close ggobi as well
         close(g)
 
+        # unload "rggobi" not to alter the search path
+        if (ggobiAttached) {
+          unloadNamespace("rggobi")
+        }
+
         return(invisible(rv))
     }
 
@@ -387,7 +405,9 @@ idendro<-structure(function# Interactive Dendrogram
     }
 
     if (is.unsorted(h$height)) {
-        warning('Non-monotone distance detected, applying a simple workaround. Consider using clustering with monotone distance.')
+        if (!silent) {
+            message('Note: non-monotone distance detected, applying a simple workaround. Consider using clustering with monotone distance.')
+        }
         # 1  4  2  7  6  5  8  9  # h$height
         #    3 -2  5 -1 -1  3  1  # tmp<-diff(h$height),  min(tmp[tmp>0]) = 1
         #    2 -3  4 -2 -2  2  0  # tmp2<-tmp-min(tmp[tmp>0]
@@ -421,7 +441,9 @@ idendro<-structure(function# Interactive Dendrogram
             }
         }
         if (nonNumericColumnFound) {
-            warning('Non-numeric data found, converting to numeric (in order to enable heatmap drawing).')
+            if (!silent) {
+                message('Note: non-numeric data found, converting to numeric (in order to enable heatmap drawing).')
+            }
         }
 
         if (is.data.frame(x)) {
@@ -526,8 +548,8 @@ idendro<-structure(function# Interactive Dendrogram
                     eval(parse(text=paste('tclvalue(clusterBrushedInfo',as.character(i),')<-',txt,sep='')))
                 }
             } else {
-                for (i in seq(along=df$clusters)) {
-                    if (is.null(df$clusters[[i]])) {
+                for (i in 1:maxClusterCount) {
+                    if (i>length(df$clusters) || is.null(df$clusters[[i]])) {
                         cnt<-0
                     } else {
                         cnt<-sum(df$leafColorIdxs==i & df$brushed)
@@ -1182,7 +1204,6 @@ idendro<-structure(function# Interactive Dendrogram
     doQuit<-function() {
         if (dbg) cat('doQuit called\n')
         #tkconfigure(tt,cursor="top_left_arrow")
-        #tkdestroy(tt)
         tclvalue(done)<-1
     }
 
@@ -1537,7 +1558,6 @@ idendro<-structure(function# Interactive Dendrogram
     }
 
     scalingReplot(img)
-    #tkwait.window(tt)
     tkwait.variable(done)
     tkdestroy(tt)
 
