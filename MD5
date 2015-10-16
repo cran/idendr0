@@ -1,6 +1,6 @@
-85991bcc8827f1247c34bd2b9cffe4b2 *DESCRIPTION
+2c9da27355defce23756f3ef6915be1c *DESCRIPTION
 7231957dfb101accec1b4ebd686332fa *NAMESPACE
-ae1679b343d60918115dee5eec874670 *NEWS
+6016c74f3081f2b2b4c25300efdbc6d7 *NEWS
 6b75eb7a2915e813634894d5d5f45d0a *R/clusterId2SegmentIds.R
 c079a2db6ec5b52f1d1d520aa5515400 *R/computeLeafColorIdxs.R
 cbbac104c99f25e6316f9d03546a51a4 *R/computeLeafOrder.R
@@ -14,7 +14,7 @@ f4da141161eb58191d7743e584f201b8 *R/fig2heatmap.R
 bb1adfc44eb199a0b5b7bc0836c3b832 *R/gw2xy.R
 3ee2ebd3aa1a2cf8f71140cb22447004 *R/heatmap2fig.R
 5d825204512e3cc7211924c9086962ad *R/idendro-internal.R
-2f5f79789aca9de042a1b020fda3e964 *R/idendro.R
+097938da526a5b9fff2e4f0fe42953fd *R/idendro.R
 1891156ad0fb1dc1757e011da3b03bdd *R/popDendroZoomHistory.R
 92abd3640a7b6f9170cfe3473c381af9 *R/popSelectionHistory.R
 e000af1878fc00d392916fd2aabdcac7 *R/prepareDendro.R
@@ -53,10 +53,10 @@ e4976345fd542f3989e21d6e6d413b0b *man/dendro2fig.Rd
 1a391ca9db5beb34371141801af8cbd7 *man/fig2dendro.Rd
 4aed05f782e03c166d75cb334a943136 *man/fig2heatmap.Rd
 2629115f016d7bdde0ab83fa53c4d002 *man/gw2xy.Rd
-3570c4f779326d66f8edb806fc40435b *man/hca5000.Rd
+464ddeeff3586a4a2ee7ece255e635be *man/hca5000.Rd
 f8f873b92fce7b92f5162203cc909f35 *man/heatmap2fig.Rd
-bf30720a3243888d63da5234e5d48e94 *man/idendr0-package.Rd
-fea1806704e8ac4ef9fc75889133321c *man/idendro.Rd
+6df753b087fc9b691bfa9ebc796d57d4 *man/idendr0-package.Rd
+f5ef3f1e3bb408a3c1e52763279d094e *man/idendro.Rd
 66a57cc107945fa761a40d78a7c38cef *man/mySeq.Rd
 a56d7a4b25aa100a367eec0a8927af61 *man/popDendroZoomHistory.Rd
 9afb991977e4b12b64d8063eec1402f9 *man/popSelectionHistory.Rd
