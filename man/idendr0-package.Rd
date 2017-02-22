@@ -8,13 +8,13 @@ color clusters, to zoom and pan the dendrogram, and to visualize
 the clustered data not only in a built-in heat map, but also in
 'GGobi' interactive plots and user-supplied plots.
 This is a backport of Qt-based 'idendro'
-(https://github.com/tsieger/idendro) to base R graphics and Tcl/Tk GUI.}
+(<https://github.com/tsieger/idendro>) to base R graphics and Tcl/Tk GUI.}
 \details{
 \tabular{ll}{Package: \tab idendr0\cr
 Type: \tab Package\cr
 Title: \tab Interactive Dendrograms\cr
-Version: \tab 1.5.2\cr
-Date: \tab 2015-10-16\cr
+Version: \tab 1.5.3\cr
+Date: \tab 2017-02-22\cr
 Author: \tab Tomas Sieger\cr
 Depends: \tab \cr
 Imports: \tab tcltk, tkrplot, grDevices, graphics, stats\cr
@@ -30,4 +30,9 @@ LazyData: \tab true\cr}
 
 \keyword{ package }
 
-
+\references{
+  Sieger, T.,  Hurley, C. B., Fiser, K., Beleites, C. (2017)
+  Interactive Dendrograms: The R Packages idendro and idendr0.
+  \emph{Journal of Statistical Software}, \bold{76}(10), 1--22.
+  doi:10.18637/jss.v076.i10
+}

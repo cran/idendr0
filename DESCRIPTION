@@ -1,8 +1,8 @@
 Package: idendr0
 Type: Package
 Title: Interactive Dendrograms
-Version: 1.5.2
-Date: 2015-10-16
+Version: 1.5.3
+Date: 2017-02-22
 Author: Tomas Sieger
 Depends:
 Imports: tcltk, tkrplot, grDevices, graphics, stats
@@ -15,11 +15,12 @@ Description: Interactive dendrogram that enables the user to select and
     the clustered data not only in a built-in heat map, but also in
     'GGobi' interactive plots and user-supplied plots. 
     This is a backport of Qt-based 'idendro' 
-    (https://github.com/tsieger/idendro) to base R graphics and Tcl/Tk GUI.
+    (<https://github.com/tsieger/idendro>) to base R graphics and 
+    Tcl/Tk GUI.
 License: GPL-2
 LazyLoad: yes
 LazyData: true
-Packaged: 2015-10-16 12:07:56 UTC; sieger
 NeedsCompilation: no
+Packaged: 2017-02-22 12:09:45 UTC; sieger
 Repository: CRAN
-Date/Publication: 2015-10-16 20:30:35
+Date/Publication: 2017-02-22 14:13:11
